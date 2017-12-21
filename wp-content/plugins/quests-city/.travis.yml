@@ -5,7 +5,7 @@ notifications:
       - oleksandr.shkuropat@gmail.com
       - winter2007d@gmail.com
     on_success: always # default: change Отправка уведомлений на почту при успешном билде
-    on_failure: always # default: always Отправка уведомлений на почту при неуспешном билде
+    on_failure: always # default: always Отправка уведомлений на почту при неуспешном  билде
 language: php
 php:
   - "7.1"
