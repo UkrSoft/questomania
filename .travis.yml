@@ -4,7 +4,7 @@ notifications:
       - n.zaretskij@gmail.com # Участинки
       - oleksandr.shkuropat@gmail.com
       - winter2007d@gmail.com
-    on_success: always # default: change Отправка уведомлений на почту при успешном билде
+    on_success: always # default: change О тправка уведомлений на почту при успешном билде
     on_failure: always # default: always Отправка уведомлений на почту при неуспешном  билде
 language: php
 php:
@@ -12,5 +12,5 @@ php:
 before_script:
   - composer self-update
   - composer install
-script: phpunit --configuration phpunit.xml --coverage-text
+script: phpunit --configuration ./wp-content/plugins/quests-city/phpunit.xml --coverage-text
 

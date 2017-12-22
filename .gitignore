@@ -24,5 +24,6 @@
 !/wp-content/plugins/quests-city/*
 !/wp-content/plugins/quests-city/*
 /wp-content/plugins/quests-city/vendor/*
+/vendor/*
 /wp-content/plugins/quests-city/report/*
 /wp-content/plugins/quests-city/composer.lock
