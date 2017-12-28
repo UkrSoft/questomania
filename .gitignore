@@ -27,3 +27,4 @@
 /vendor/*
 /wp-content/plugins/quests-city/report/*
 /wp-content/plugins/quests-city/composer.lock
+node_modules/*

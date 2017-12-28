@@ -1,16 +1,25 @@
+matrix:
+  include:
+    - language: node_js
+      node_js: 8.9.3
+      before_script:
+        - npm install mocha chai
+        - npm install mathjs
+        - npm install mocha -g
+      script:
+        - mocha
+    - language: php
+      php:
+        - "7.1"
+      before_script:
+      - composer self-update
+      - composer install
+      script: phpunit --configuration ./wp-content/plugins/quests-city/phpunit.xml --coverage-text
 notifications:
   email:
     recipients:
-      - n.zaretskij@gmail.com # Участинки
-      - oleksandr.shkuropat@gmail.com
+      - oleksandr.shkuropat@gmail.com # Участинки
       - winter2007d@gmail.com
-    on_success: always # default: change О тправка уведомлений на почту при успешном билде
+      - n.zaretskij@gmail.com # Участинки
+    on_success: always # default: change Отправка уведомлений на почту при успешном билде
     on_failure: always # default: always Отправка уведомлений на почту при неуспешном  билде
-language: php
-php:
-  - "7.1"
-before_script:
-  - composer self-update
-  - composer install
-script: phpunit --configuration ./wp-content/plugins/quests-city/phpunit.xml --coverage-text
-
