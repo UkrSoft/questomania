@@ -1,6 +1,7 @@
 .git
 .idea
 .htaccess
+package-lock.json
 *.lnk
 /*.php
 /*.html
@@ -28,3 +29,4 @@
 /wp-content/plugins/quests-city/report/*
 /wp-content/plugins/quests-city/composer.lock
 node_modules/*
+!gulpfile.js

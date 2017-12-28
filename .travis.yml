@@ -3,11 +3,10 @@ matrix:
     - language: node_js
       node_js: 8.9.3
       before_script:
-        - npm install mocha chai
-        - npm install mathjs
-        - npm install mocha -g
+        - npm install mocha chai mathjs sinon gulp gulp-util gulp-mocha
+        - npm install mocha gulp -g
       script:
-        - mocha
+        - gulp
     - language: php
       php: 7.1
       before_script:
