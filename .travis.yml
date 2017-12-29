@@ -6,7 +6,7 @@ matrix:
         - npm install mocha chai mathjs sinon gulp gulp-util gulp-mocha
         - npm install mocha gulp -g
       script:
-        - gulp
+        - gulp mocha
     - language: php
       php: 7.1
       before_script:
