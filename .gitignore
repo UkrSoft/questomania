@@ -17,13 +17,10 @@
 /wp-content/plugins/quests-city/*.log
 /wp-content/upgrade/*
 /wp-content/uploads/*
-/wp-content/themes/*.php
-/wp-content/themes/twentyfifteen/*
-/wp-content/themes/twentyseventeen/*
-/wp-content/themes/twentysixteen/*
-!/wp-content/plugins/quests-city/*
+/wp-content/themes/*
 !/wp-content/plugins/quests-city/*
 /wp-content/plugins/quests-city/vendor/*
-/vendor/*
 /wp-content/plugins/quests-city/report/*
 /wp-content/plugins/quests-city/composer.lock
+/node_modules/*
+!/package-lock.json
