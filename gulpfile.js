@@ -3,6 +3,6 @@ var gulp = require('gulp'),
     gutil = require('gulp-util');
 
 gulp.task('mocha', function() {
-    return gulp.src(['./wp-content/plugins/quests-city/backend_nodejs/test/*.js'])
+    return gulp.src(['./backend/test/*.js'])
         .pipe(mocha({reporter: 'list'}));
 });

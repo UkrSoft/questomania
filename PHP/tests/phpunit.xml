@@ -15,7 +15,7 @@
         <whitelist addUncoveredFilesFromWhitelist="true">
             <!-- this is the path of the files included in your clover report -->
             <!-- Папки с расширением .php которые будут включены в отчет -->
-            <directory suffix=".php">./backend</directory>
+            <directory suffix=".php">./PHP/tests/</directory>
         </whitelist>
     </filter>
     <logging>
@@ -26,7 +26,7 @@
     <testsuites>
         <testsuite name="Unit test">
             <!-- Дирректории в которых будут искаться и запускаться юнит тесты-->
-            <directory>./backend</directory>
+            <directory>./PHP/tests/</directory>
         </testsuite>
     </testsuites>
 </phpunit>
