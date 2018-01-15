@@ -23,4 +23,4 @@
 /wp-content/plugins/quests-city/report/*
 /wp-content/plugins/quests-city/composer.lock
 /node_modules/*
-!/package-lock.json
+package-lock.json

@@ -1,7 +1,6 @@
 var express = require('express');
 var bodyParser = require('body-parser');
 var cookieParser = require('cookie-parser');
-var passport = require('passport');
 var session = require('express-session');
 
 var app = express();
@@ -20,9 +19,9 @@ var authRouter = require('./backend/src/routes/authRoutes')(nav);
 
 app.use(express.static('./frontend/public'));
 app.use(bodyParser.json());
-app.use(bodyParser.urlencoded());
+app.use(bodyParser.urlencoded({extended: true}));
 app.use(cookieParser());
-app.use(session({secret: 'library'}));
+app.use(session({secret: 'library', resave: true, saveUninitialized: true}));
 
 require('./backend/src/config/passport')(app);
 
