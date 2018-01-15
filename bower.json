@@ -1,16 +1,14 @@
 {
-  "name": "library",
-  "version": "0.0.0",
+  "name": "quests.city",
+  "version": "0.0.1",
   "authors": [
-    "Jonathan Mills <jonathanfmills@gmail.com>"
+    "Quest City Devs <quests.city.ukr@gmail.com>"
   ],
-  "license": "MIT",
+  "license": "Apache 2.0",
   "ignore": [
     "**/.*",
     "node_modules",
-    "bower_components",
-    "test",
-    "tests"
+    "bower_components"
   ],
   "dependencies": {
     "bootstrap": "~3.3.5",

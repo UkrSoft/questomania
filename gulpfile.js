@@ -46,7 +46,7 @@ gulp.task('inject', function () {
 
 });
 
-gulp.task('serve', ['mocha','style', 'inject'], function () {
+gulp.task('serve', ['mocha', 'style', 'inject'], function () {
     var options = {
         script: 'app.js',
         delayTime: 1,

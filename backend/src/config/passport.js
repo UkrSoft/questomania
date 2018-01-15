@@ -1,4 +1,5 @@
 var passport = require('passport');
+var localStrategy = require('./strategies/local.strategy');
 
 module.exports = function (app) {
     app.use(passport.initialize());
@@ -12,6 +13,10 @@ module.exports = function (app) {
         done(null, user);
     });
 
-    require('./strategies/local.strategy')();
+    passport.addUser = function (user) {
+        localStrategy.users.push({username: user.username, password: user.password});
+    };
+
+    localStrategy.func();
 
 };
