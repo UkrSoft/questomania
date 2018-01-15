@@ -1,5 +1,5 @@
 {
-  "name": "quests.city.loc",
+  "name": "quests.city",
   "version": "0.0.1",
   "dependencies": {
     "chai": "4.1.2",
