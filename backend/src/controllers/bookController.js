@@ -59,6 +59,7 @@ var bookController = function (bookService, nav) {
         //}
         next();
     };
+
     var getIndex = function (req, res) {
 
         res.render('bookListView', {
@@ -67,6 +68,26 @@ var bookController = function (bookService, nav) {
             books: books
         });
     };
+
+    /* var getIndex = function (req, res) {
+        var url =
+            'mongodb://localhost:27017/libraryApp';
+
+        mongodb.connect(url, function (err, db) {
+            var collection = db.collection('books');
+
+            collection.find({}).toArray(
+                function (err, results) {
+                    res.render('bookListView', {
+                        title: 'Books',
+                        nav: nav,
+                        books: results
+                    });
+                }
+            );
+        });
+
+    };*/
 
     var getById = function (req, res) {
         var id = new ObjectId(req.params.id);
