@@ -10,6 +10,7 @@
     "node_modules",
     "bower_components"
   ],
+  "directory":"./frontend/public/lib",
   "dependencies": {
     "bootstrap": "~3.3.5",
     "font-awesome": "~4.4.0"
