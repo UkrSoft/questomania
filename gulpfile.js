@@ -61,3 +61,7 @@ gulp.task('serve', ['mocha', 'style', 'inject'], function () {
             console.log('Restarting....');
         });
 });
+
+gulp.task('watch', function (){
+	gulp.watch(jsFiles,['mocha']);
+});
