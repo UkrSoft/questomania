@@ -2,6 +2,7 @@ var express = require('express');
 var bodyParser = require('body-parser');
 var cookieParser = require('cookie-parser');
 var session = require('express-session');
+var mongodb = require('mongodb').MongoClient;
 
 var app = express();
 
@@ -29,10 +30,59 @@ app.set('views', './backend/src/views');
 
 app.set('view engine', 'ejs');
 
+/*app.post('/saveQuestion', function (req, res) {
+    console.log(req.body);
+    res.send(req.body);
+});*/
+
 app.use('/Books', bookRouter);
 app.use('/Admin', adminRouter);
 app.use('/Auth', authRouter);
 
+app.post('/saveQuestion', function (req, res) {
+    console.error(req.body);
+    var insertedId = null;
+    //res.send(req.body);
+    var url =
+        'mongodb://localhost:27017/web_forms';
+
+    mongodb.connect(url, function (err, db) {
+        if (err) {
+            console.log(err);
+            throw err;
+        }
+        var collection = db.collection('questions');
+        var obj = req.body;
+        collection.insert(obj,
+            function (err, results) {
+                //res.send(results.insertedIds[0].id);
+                insertedId = obj._id;
+                console.log(insertedId);
+                db.close();
+
+                mongodb.connect(url, function (err, db) {
+                    if (err) {
+                        throw err;
+                    }
+
+                    db.collection('questions').findOne({
+                            _id: insertedId
+                        },
+                        function (err, result) {
+                            if (err) {
+                                throw err;
+                            }
+                            //res.send(req.body);
+                            res.send(result);
+                            console.log('SEnd result', result);
+                            db.close();
+                        });
+                });
+
+            });
+    });
+
+});
 app.get('/', function (req, res) {
     res.render('index', {
         title: 'Hello from render',
@@ -44,6 +94,7 @@ app.get('/', function (req, res) {
             Text: 'Authors'
         }]
     });
+
 });
 
 app.get('/books', function (req, res) {

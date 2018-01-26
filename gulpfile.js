@@ -25,7 +25,7 @@ gulp.task('inject', function () {
     var inject = require('gulp-inject');
 
     var injectSrc = gulp.src(['./frontend/public/css/*.css',
-        './frontend/public/js/*.js'], {
+        './frontend/public/js/*.js', './frontend/public/js/**/*.js'], {
         read: false
     });
 
