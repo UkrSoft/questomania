@@ -46,7 +46,7 @@ gulp.task('inject', function () {
 
 });
 
-gulp.task('serve', ['mocha', 'style', 'inject'], function () {
+gulp.task('serve', ['mocha', 'style', 'inject', 'watch'], function () {
     var options = {
         script: 'app.js',
         delayTime: 1,
@@ -60,4 +60,8 @@ gulp.task('serve', ['mocha', 'style', 'inject'], function () {
         .on('restart', function (ev) {
             console.log('Restarting....');
         });
+});
+
+gulp.task('watch', function () {
+    gulp.watch(jsFiles,['mocha']);
 });
