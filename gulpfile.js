@@ -63,4 +63,5 @@ gulp.task('serve', ['mocha', 'style', 'inject', 'watch'], function () {
 
 gulp.task('watch', function () {
     gulp.watch(jsFiles,['mocha']);
+
 });

@@ -3,6 +3,7 @@
       "./frontend/public/js/dragable.js"
     ],
 
+
     "requireCurlyBraces": [
         "if",
         "else",

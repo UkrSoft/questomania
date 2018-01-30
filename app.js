@@ -23,21 +23,16 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(cookieParser());
 app.use(session({secret: 'library', resave: true, saveUninitialized: true}));
-
 require('./backend/src/config/passport')(app);
 
 app.set('views', './backend/src/views');
 
 app.set('view engine', 'ejs');
 
-/*app.post('/saveQuestion', function (req, res) {
-    console.log(req.body);
-    res.send(req.body);
-});*/
-
 app.use('/Books', bookRouter);
 app.use('/Admin', adminRouter);
 app.use('/Auth', authRouter);
+
 
 app.post('/saveQuestion', function (req, res) {
     console.error(req.body);
@@ -83,6 +78,7 @@ app.post('/saveQuestion', function (req, res) {
     });
 
 });
+
 app.get('/', function (req, res) {
     res.render('index', {
         title: 'Hello from render',
