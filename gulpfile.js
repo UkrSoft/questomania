@@ -3,7 +3,6 @@ var jshint = require('gulp-jshint');
 var jscs = require('gulp-jscs');
 var nodemon = require('gulp-nodemon');
 var mocha = require('gulp-mocha');
-
 var jsFiles = ['*.js', 'backend/src/**/*.js'];
 
 gulp.task('mocha', function () {
