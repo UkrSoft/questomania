@@ -7,12 +7,6 @@ matrix:
         - npm install mocha gulp -g
       script:
         - gulp mocha
-    - language: php
-      php: 7.1
-      before_script:
-      - composer self-update
-      - composer install
-      script: phpunit --configuration ./PHP/tests/phpunit.xml --coverage-text
 notifications:
   email:
     recipients:

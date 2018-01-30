@@ -3,7 +3,6 @@ var jshint = require('gulp-jshint');
 var jscs = require('gulp-jscs');
 var nodemon = require('gulp-nodemon');
 var mocha = require('gulp-mocha');
-
 var jsFiles = ['*.js', 'backend/src/**/*.js'];
 
 gulp.task('mocha', function () {
@@ -25,7 +24,7 @@ gulp.task('inject', function () {
     var inject = require('gulp-inject');
 
     var injectSrc = gulp.src(['./frontend/public/css/*.css',
-        './frontend/public/js/*.js'], {
+        './frontend/public/js/*.js', './frontend/public/js/**/*.js'], {
         read: false
     });
 
@@ -64,4 +63,5 @@ gulp.task('serve', ['mocha', 'style', 'inject', 'watch'], function () {
 
 gulp.task('watch', function () {
     gulp.watch(jsFiles,['mocha']);
+
 });
