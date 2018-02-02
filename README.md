@@ -6,3 +6,6 @@ We in social networks:
 [Instagram](https://www.instagram.com/questscity/)  
 [Twitter](https://twitter.com/QuestsCity)  
 [YouTube](https://www.youtube.com/channel/UCekg9OrCBfhiprJhGFl0ALQ)  
+
+Для запуска проекта в корне проєкта запустить команду 
+npm start
