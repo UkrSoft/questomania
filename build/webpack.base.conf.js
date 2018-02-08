@@ -36,7 +36,7 @@ module.exports = {
         include: [resolve('src'), resolve('test')],
         options: {
           formatter: require('eslint-friendly-formatter'),
-          fix: true
+          fix: true  // auto-fix simple style issues
         }
       },
       {
