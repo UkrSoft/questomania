@@ -1,18 +1,18 @@
 
 <template>
-  <v-app id="inspire" >
+  <v-app id="inspire" class="scroll-y" >
 
     <!-- Left menu -->
     <v-navigation-drawer
+    height="500px"
     disable-resize-watcher
-     stateless permanent  value="true"
+     stateless permanent
     hide-overlay
     persistent
       :mini-variant="miniVariant"
       :clipped="clipped_left"
       v-model="drawer_left"
       absolute
-      height="70%"
       app
     >
       <v-list>
@@ -34,8 +34,11 @@
       <div slot="header">Аудіо</div>
         <v-layout row wrap>
 
-          <v-flex xs6>
-            <v-card>
+
+
+
+          <v-flex xs6 v-on:click="addCard()">
+               <v-card>
                 <v-card-media
                   src='/static/img/icons_app/music.png'
                   height="100px"
@@ -46,6 +49,10 @@
               </v-card-title>
             </v-card>
           </v-flex>
+
+
+
+
 
           <v-flex xs6>
             <v-card>
@@ -104,15 +111,16 @@
 
  <!-- Right menu -->
 <v-navigation-drawer
+ height="500px"
+
 
     hide-overlay
+
       :mini-variant="miniVariant_right"
       :clipped="clipped_right"
       v-model="drawer_rigth"
-      fixed
+      absolute
       right
-      height="70%"
-
       app
     >
       <v-list>
@@ -192,13 +200,47 @@
         </v-flex>
       </v-layout>
     </v-expansion-panel-content >
-   </v-expansion-panel>
+
+
+   <v-expansion-panel-content >
+      <div slot="header">Аудіо</div>
+      <v-layout row wrap>
+        <v-flex xs6>
+          <v-card>
+            <v-card-media
+              src='/static/img/icons_app/music.png'
+              height="100px"
+            >
+            </v-card-media>
+            <v-card-title primary-title>
+            <div class="headline">Music</div>
+            </v-card-title>
+          </v-card>
+        </v-flex>
+
+         <v-flex xs6>
+        <v-card>
+        <v-card-media
+          src='/static/img/icons_app/music.png'
+          height="100px"
+        >
+        </v-card-media>
+        <v-card-title primary-title>
+            <div class="headline">Music</div>
+        </v-card-title>
+        </v-card>
+        </v-flex>
+      </v-layout>
+    </v-expansion-panel-content >
+ </v-expansion-panel>
+
+
       </v-list>
     </v-navigation-drawer>
 <!-- End rightDrawer -->
 
 
-
+<!-- toolbar -->
     <v-toolbar
       fixed
       app
@@ -220,45 +262,174 @@
       <v-spacer></v-spacer>
       <v-toolbar-side-icon @click.stop="drawer_rigth = !drawer_rigth"></v-toolbar-side-icon>
     </v-toolbar>
+    <!-- end Toolbar -->
 
 
-    <!-- <main > -->
-      <v-content md12  class="grey lighten-4" id="content">
+
+      <!-- <v-content md12  class="scroll-y"  id="content">
         <v-expansion-panel expand app>
-    <v-expansion-panel-content v-for="(item,i) in 4" :key="i" v-bind:value="item === 2">
+    <v-expansion-panel-content v-for="(item,i) in 8" :key="i" v-bind:value="item === 2">
       <div slot="header">Item</div>
       <v-card>
         <v-card-text class="grey lighten-3">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</v-card-text>
       </v-card>
     </v-expansion-panel-content>
   </v-expansion-panel>
-      </v-content>
-    <!-- </main> -->
+      </v-content> -->
 
-    <!-- <v-content>
+<!-- main field  -->
+    <v-content>
        <v-layout md12>
-      <v-expansion-panel  expand>
+      <v-card class="e4" md12 height="500px" width="700px">
+    <vue-draggable-resizable
+              v-bind="{ [`xs${card.flex}`]: true }"
+              v-for="card in cards"
+              :key="card.title"
+            >
+              <v-card>
+                <v-card-media
+                  :src="card.src"
+                  height="100px"
+                >
+                  <v-container fill-height fluid>
+                    <v-layout fill-height>
+                      <v-flex xs12 align-end flexbox>
+                        <span class="headline white--text" v-text="card.title"/>
+                      </v-flex>
+                    </v-layout>
+                  </v-container>
+                </v-card-media>
+                <!-- <v-card-actions>
+                  <v-spacer></v-spacer>
+                  <v-btn icon>
+                    <v-icon>favorite</v-icon>
+                  </v-btn>
+                  <v-btn icon>
+                    <v-icon>bookmark</v-icon>
+                  </v-btn>
+                  <v-btn icon>
+                    <v-icon>share</v-icon>
+                  </v-btn>
+                </v-card-actions> -->
+              </v-card>
+            </vue-draggable-resizable>
+
+
+        <v-card-title>Drop zone</v-card-title>
+      </v-card>
+
+    </v-layout>
+    </v-content>
+    <!-- end main field -->
+
+
+    <v-layout>
+
+         <v-expansion-panel expand md12>
+    <v-expansion-panel-content ripple >
+      <div slot="header">Аудіо</div>
+        <v-layout row wrap>
+
+          <v-flex xs6>
+            <v-card>
+                <v-card-media
+                  src='/static/img/icons_app/music.png'
+                  height="100px"
+                 >
+                </v-card-media>
+              <v-card-title primary-title>
+              <div class="headline">Music</div>
+              </v-card-title>
+            </v-card>
+          </v-flex>
+
+          <v-flex xs6>
+            <v-card>
+                <v-card-media
+                  src='/static/img/icons_app/music.png'
+                  height="100px"
+                 >
+                </v-card-media>
+              <v-card-title primary-title>
+              <div class="headline">Music</div>
+              </v-card-title>
+            </v-card>
+          </v-flex>
+        </v-layout>
+    </v-expansion-panel-content >
+
     <v-expansion-panel-content >
       <div slot="header">Аудіо</div>
-      </v-expansion-panel-content >
-      </v-expansion-panel>
+      <v-layout row wrap>
+        <v-flex xs6>
+          <v-card>
+            <v-card-media
+              src='/static/img/icons_app/music.png'
+              height="100px"
+            >
+            </v-card-media>
+            <v-card-title primary-title>
+            <div class="headline">Music</div>
+            </v-card-title>
+          </v-card>
+        </v-flex>
+
+         <v-flex xs6>
+        <v-card>
+        <v-card-media
+          src='/static/img/icons_app/music.png'
+          height="100px"
+        >
+        </v-card-media>
+        <v-card-title primary-title>
+            <div class="headline">Music</div>
+        </v-card-title>
+        </v-card>
+        </v-flex>
+      </v-layout>
+    </v-expansion-panel-content >
+
+
+   <v-expansion-panel-content >
+      <div slot="header">Аудіо</div>
+      <v-layout row wrap>
+        <v-flex xs6>
+          <v-card>
+            <v-card-media
+              src='/static/img/icons_app/music.png'
+              height="100px"
+            >
+            </v-card-media>
+            <v-card-title primary-title>
+            <div class="headline">Music</div>
+            </v-card-title>
+          </v-card>
+        </v-flex>
+
+         <v-flex xs6>
+        <v-card>
+        <v-card-media
+          src='/static/img/icons_app/music.png'
+          height="100px"
+        >
+        </v-card-media>
+        <v-card-title primary-title>
+            <div class="headline">Music</div>
+        </v-card-title>
+        </v-card>
+        </v-flex>
+      </v-layout>
+    </v-expansion-panel-content >
+ </v-expansion-panel>
+
     </v-layout>
-    </v-content> -->
+
+ <v-footer class="pa-3">
+    <v-spacer></v-spacer>
+    <div>&copy; {{ new Date().getFullYear() }}</div>
+  </v-footer>
 
 
-
-    <v-footer :fixed="fixed" app>
-
-        <v-expansion-panel expand app>
-    <v-expansion-panel-content v-for="(item,i) in 2" :key="i" v-bind:value="item === 2">
-      <div slot="header">Item</div>
-      <v-card>
-        <v-card-text class="grey lighten-3">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</v-card-text>
-      </v-card>
-    </v-expansion-panel-content>
-  </v-expansion-panel>
-      <span>&copy; 2017</span>
-    </v-footer>
 
 
 
@@ -386,34 +557,39 @@ export default {
           title: 'Pre-fab homes',
           src: '/static/img/icons_app/music.png',
           flex: 6
-        },
-        {
-          title: 'Favorite road trips',
-          src: '/static/img/icons_app/music.png',
-          flex: 6
-        },
-        {
-          title: 'Best airlines',
-          src: '/static/img/icons_app/music.png',
-          flex: 6
         }
       ]
+    }
+  },
+  methods: {
+    addCard: function () {
+      this.cards.push({
+        title: 'New',
+        src: '/static/img/icons_app/music.png',
+        flex: '6'
+      })
     }
   }
 }
 </script>
+
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
 #inspire {
   min-width: 1000px;
 }
-main {
-  max-height: 500px;
+#main {
+  height: 500px;
+  min-width: 500px;
 }
 #content {
   min-width: 500px;
-  max-height: 60%;
+  max-height: 100%;
+}
+.e4 {
+  width: 600px;
+  margin: auto;
 }
 </style>
 

@@ -5,8 +5,11 @@ import App from './App'
 import router from './router'
 import Vuetify from 'vuetify'
 import 'vuetify/dist/vuetify.min.css'
+import VueDraggableResizable from 'vue-draggable-resizable'
 
 Vue.use(Vuetify)
+
+Vue.component('vue-draggable-resizable', VueDraggableResizable)
 
 Vue.config.productionTip = false
 
