@@ -53,8 +53,7 @@
 
 
 
-
-          <v-flex xs6>
+          <v-flex xs6 >
             <v-card>
                 <v-card-media
                   src='/static/img/icons_app/music.png'
@@ -258,6 +257,7 @@
         <v-icon>remove</v-icon>
       </v-btn>
       <v-btn color="primary" dark @click.stop="dialog = true">Профіль</v-btn>
+      <v-btn color="primary" dark v-on:click="clickButtonTest('Test')">Test socket.io</v-btn>
       <v-toolbar-title v-text="title"></v-toolbar-title>
       <v-spacer></v-spacer>
       <v-toolbar-side-icon @click.stop="drawer_rigth = !drawer_rigth"></v-toolbar-side-icon>
@@ -561,6 +561,15 @@ export default {
       ]
     }
   },
+
+  sockets: {
+    connect: function () {
+      console.log('socket connected')
+    },
+    news: function (val) {
+      console.log(val)
+    }
+  },
   methods: {
     addCard: function () {
       this.cards.push({
@@ -568,6 +577,11 @@ export default {
         src: '/static/img/icons_app/music.png',
         flex: '6'
       })
+    },
+    clickButtonTest: function (val) {
+      // $socket is socket.io-client instance
+      console.log('click')
+      this.$socket.emit('another', val)
     }
   }
 }

@@ -90,6 +90,18 @@ devMiddleware.waitUntilValid(() => {
 server.listen(port)
 // const server = app.listen(port)
 
+
+io.on('connection', function (socket) {
+  setInterval(function(){
+    socket.emit('news', {'title': "A new title via Socket.IO!"});
+}, 10000);
+socket.on('another', function (data) {
+  console.log(data);
+});
+  // socket.emit('news', { hello: 'world' });
+
+});
+
 module.exports = {
   ready: readyPromise,
   close: () => {
