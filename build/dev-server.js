@@ -11,6 +11,7 @@ const opn = require('opn')
 const path = require('path')
 const express = require('express')
 const webpack = require('webpack')
+const bodyParser = require('body-parser')
 const proxyMiddleware = require('http-proxy-middleware')
 const webpackConfig = process.env.NODE_ENV === 'testing'
   ? require('./webpack.prod.conf')
@@ -25,6 +26,9 @@ const autoOpenBrowser = !!config.dev.autoOpenBrowser
 const proxyTable = config.dev.proxyTable
 
 const app = express()
+const server = require('http').Server(app);
+const io = require('socket.io')(server);
+
 const compiler = webpack(webpackConfig)
 
 const devMiddleware = require('webpack-dev-middleware')(compiler, {
@@ -83,7 +87,8 @@ devMiddleware.waitUntilValid(() => {
   _resolve()
 })
 
-const server = app.listen(port)
+server.listen(port)
+// const server = app.listen(port)
 
 module.exports = {
   ready: readyPromise,
