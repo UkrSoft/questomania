@@ -281,7 +281,7 @@
     <v-content>
        <v-layout md12>
       <v-card class="e4" md12 height="500px" width="700px">
-    <vue-draggable-resizable
+    <vue-draggable-resizable :parent="true"
               v-bind="{ [`xs${card.flex}`]: true }"
               v-for="card in cards"
               :key="card.title"
