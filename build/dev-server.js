@@ -6,16 +6,17 @@ const config = require('../config')
 if (!process.env.NODE_ENV) {
   process.env.NODE_ENV = JSON.parse(config.dev.env.NODE_ENV)
 }
-
 const opn = require('opn')
 const path = require('path')
 const express = require('express')
 const webpack = require('webpack')
 const bodyParser = require('body-parser')
+const mongoose = require('mongoose')
 const proxyMiddleware = require('http-proxy-middleware')
 const webpackConfig = process.env.NODE_ENV === 'testing'
   ? require('./webpack.prod.conf')
   : require('./webpack.dev.conf')
+const Elem = require('../src/model/schema')
 
 // default port where dev server listens for incoming traffic
 const port = process.env.PORT || config.dev.port
@@ -39,6 +40,12 @@ const devMiddleware = require('webpack-dev-middleware')(compiler, {
 const hotMiddleware = require('webpack-hot-middleware')(compiler, {
   log: false
 })
+
+const connectDb = () => {
+  mongoose.Promise = require('bluebird')
+  mongoose.connect('mongodb://localhost:27017/web_forms')
+  return mongoose.connection
+}
 // force page reload when html-webpack-plugin template changes
 compiler.plugin('compilation', function (compilation) {
   compilation.plugin('html-webpack-plugin-after-emit', function (data, cb) {
@@ -86,20 +93,33 @@ devMiddleware.waitUntilValid(() => {
   }
   _resolve()
 })
+const startServer = () => {
+  server.listen(port, () => console.log(`App started on port ${port}`)) // => use callback function
+}
 
-server.listen(port)
+connectDb()
+  .on('error', console.log)
+  .on('disconnected', connectDb)
+  .once('open', startServer)
+// server.listen(port)
 // const server = app.listen(port)
 
 
 io.on('connection', function (socket) {
-  setInterval(function(){
-    socket.emit('news', {'title': "A new title via Socket.IO!"});
-}, 10000);
-socket.on('another', function (data) {
-  console.log(data);
-});
-  // socket.emit('news', { hello: 'world' });
+  socket.on('save', function (data) {
+    var element = new Elem({ title: data[0].title, src: data[0].src });
 
+    element.save().then(function (element) {
+      console.log('save ', element)
+      var temp = Elem.findById(element._id, function (err, doc) {
+        if (err) return console.error(err);
+        console.log('send ', doc)
+        socket.emit('news', doc)
+      })
+    }).catch(function (err) {
+      console.error(err)
+    })
+  });
 });
 
 module.exports = {

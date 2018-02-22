@@ -282,7 +282,7 @@
        <v-layout md12>
       <v-card class="e4" md12 height="500px" width="700px">
     <vue-draggable-resizable :parent="true"
-              v-bind="{ [`xs${card.flex}`]: true }"
+
               v-for="card in cards"
               :key="card.title"
             >
@@ -555,8 +555,7 @@ export default {
       cards: [
         {
           title: 'Pre-fab homes',
-          src: '/static/img/icons_app/music.png',
-          flex: 6
+          src: '/static/img/icons_app/music.png'
         }
       ]
     }
@@ -566,22 +565,23 @@ export default {
     connect: function () {
       console.log('socket connected')
     },
-    news: function (val) {
-      console.log(val)
+    news: function (cards) {
+      console.log(cards)
+      this.cards.push(cards)
     }
   },
   methods: {
     addCard: function () {
       this.cards.push({
         title: 'New',
-        src: '/static/img/icons_app/music.png',
-        flex: '6'
+        src: '/static/img/icons_app/music.png'
       })
     },
     clickButtonTest: function (val) {
       // $socket is socket.io-client instance
       console.log('click')
-      this.$socket.emit('another', val)
+      this.$socket.emit('save', this.cards)
+      this.cards = []
     }
   }
 }

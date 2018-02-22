@@ -14,7 +14,9 @@
     "lint": "eslint --ext .js,.vue src test/unit/specs test/e2e/specs"
   },
   "dependencies": {
+    "bluebird": "^3.5.1",
     "http": "0.0.0",
+    "mongoose": "^5.0.6",
     "socket.io": "^2.0.4",
     "vue": "^2.5.2",
     "vue-draggable-resizable": "^1.6.1",
