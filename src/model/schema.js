@@ -3,7 +3,9 @@ const mongoose = require('mongoose')
 // create a schema
 const elemSchema = new mongoose.Schema({
   title: String,
-  src: { type: String, required: true }
+  src: { type: String, required: true },
+  xPosition: { type: Number },
+  yPosition: { type: Number }
 })
 
 // the schema is useless so far

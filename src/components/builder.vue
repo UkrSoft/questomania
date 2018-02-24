@@ -281,7 +281,8 @@
     <v-content>
        <v-layout md12>
       <v-card class="e4" md12 height="500px" width="700px">
-    <vue-draggable-resizable :parent="true"
+    <vue-draggable-resizable :parent="true" @dragging="onDragging"
+    :x="card.xPosition" :y="card.yPosition"
 
               v-for="card in cards"
               :key="card.title"
@@ -555,7 +556,9 @@ export default {
       cards: [
         {
           title: 'Pre-fab homes',
-          src: '/static/img/icons_app/music.png'
+          src: '/static/img/icons_app/music.png',
+          xPosition: 0,
+          yPosition: 0
         }
       ]
     }
@@ -574,7 +577,9 @@ export default {
     addCard: function () {
       this.cards.push({
         title: 'New',
-        src: '/static/img/icons_app/music.png'
+        src: '/static/img/icons_app/music.png',
+        xPosition: 0,
+        yPosition: 0
       })
     },
     clickButtonTest: function (val) {
@@ -582,6 +587,10 @@ export default {
       console.log('click')
       this.$socket.emit('save', this.cards)
       this.cards = []
+    },
+    onDragging: function (x, y) {
+      this.cards[0].xPosition = x
+      this.cards[0].yPosition = y
     }
   }
 }

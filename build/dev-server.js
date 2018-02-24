@@ -107,7 +107,8 @@ connectDb()
 
 io.on('connection', function (socket) {
   socket.on('save', function (data) {
-    var element = new Elem({ title: data[0].title, src: data[0].src });
+    var element = new Elem({ title: data[0].title, src: data[0].src, xPosition: data[0].xPosition,
+      yPosition: data[0].yPosition });
 
     element.save().then(function (element) {
       console.log('save ', element)
