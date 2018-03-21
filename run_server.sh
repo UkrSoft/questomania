@@ -1,2 +1,2 @@
 #!/bin/bash
-sudo gulp serve
+sudo npm start
