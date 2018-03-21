@@ -1,1 +1,1 @@
-gulp serve
+npm start
